@@ -1,9 +1,17 @@
 #include <iostream>
 #include <string>
 
-int main() {
-    std::string plain = "abcdefghijklmnopqrstuvwxyz";
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        std::cout << "Usage: " << argv[0] << " <text_to_encrypt>\n";
+        std::cout << "Example: " << argv[0] << " hello\n";
+        return 1;
+    }
+
+    std::string plain = argv[1];
     std::string cipher;
+
+    std::cout << "All ROT encryptions for '" << plain << "':\n";
     
     for(int shift = 1; shift < 26; shift++) {
         cipher.clear();
