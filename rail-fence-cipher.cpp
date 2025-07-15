@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-int main(int argc, char* argv[]) {
+int rail_fence_cipher_main(int argc, char* argv[]) {
     if (argc < 2) {
         std::cout << "Usage: " << argv[0] << " <text_to_encrypt> [rails]\n";
         std::cout << "Example: " << argv[0] << " hello 3\n";

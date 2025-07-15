@@ -26,7 +26,7 @@ std::string affineEncrypt(const std::string& plain, int a, int b) {
     return cipher;
 }
 
-int main(int argc, char* argv[]) {
+int affine_cipher_main(int argc, char* argv[]) {
     if (argc < 4) {
         std::cout << "Usage: " << argv[0] << " <text_to_encrypt> <a> <b>\n";
         std::cout << "Example: " << argv[0] << " hello 5 8\n";

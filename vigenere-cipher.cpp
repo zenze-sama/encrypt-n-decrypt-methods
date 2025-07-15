@@ -2,7 +2,7 @@
 #include <string>
 #include <cctype>
 
-int main(int argc, char* argv[]) {
+int vigenere_cipher_main(int argc, char* argv[]) {
     if (argc < 3) {
         std::cout << "Usage: " << argv[0] << " <text_to_encrypt> <key>\n";
         std::cout << "Example: " << argv[0] << " hello KEY\n";

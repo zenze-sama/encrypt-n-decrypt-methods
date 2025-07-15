@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-int main(int argc, char* argv[]) {
+int caesar_cipher_main(int argc, char* argv[]) {
     if (argc < 2) {
         std::cout << "Usage: " << argv[0] << " <text_to_encrypt>\n";
         std::cout << "Example: " << argv[0] << " hello\n";
