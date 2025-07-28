@@ -61,9 +61,9 @@ int main() {
 
 void displayMenu() {
     std::cout << "================================\n";
-    std::cout << "  Encryption Algorithm Selector  \n";
+    std::cout << "  Encryption/Decryption Tool     \n";
     std::cout << "================================\n";
-    std::cout << "1. Caesar Cipher (ROT-25)\n";
+    std::cout << "1. Caesar Cipher\n";
     std::cout << "2. Affine Cipher\n";
     std::cout << "3. Vigenere Cipher\n";
     std::cout << "4. Rail Fence Cipher\n";
@@ -86,25 +86,45 @@ void waitForEnter() {
 
 void runCaesarCipher() {
     std::cout << "=== Caesar Cipher ===\n";
-    std::cout << "Enter text to encrypt: ";
+    std::cout << "Enter text: ";
     std::string text;
     std::getline(std::cin, text);
+    
+    std::cout << "Mode (1=encrypt, 2=decrypt): ";
+    std::string mode;
+    std::getline(std::cin, mode);
     
     std::vector<char*> argv;
     char arg0[] = "caesar-cipher";
     char* arg1 = &text[0];
     argv.push_back(arg0);
     argv.push_back(arg1);
+    
+    if (mode == "2") {
+        std::cout << "Enter shift value: ";
+        std::string shift;
+        std::getline(std::cin, shift);
+        
+        char arg2[] = "decrypt";
+        char* arg3 = &shift[0];
+        argv.push_back(arg2);
+        argv.push_back(arg3);
+    }
+    
     argv.push_back(nullptr);
     
-    caesar_cipher_main(2, argv.data());
+    caesar_cipher_main(argv.size() - 1, argv.data());
 }
 
 void runAffineCipher() {
     std::cout << "=== Affine Cipher ===\n";
-    std::cout << "Enter text to encrypt: ";
+    std::cout << "Enter text: ";
     std::string text;
     std::getline(std::cin, text);
+    
+    std::cout << "Mode (1=encrypt, 2=decrypt): ";
+    std::string mode;
+    std::getline(std::cin, mode);
     
     std::string a_str, b_str;
     std::cout << "Enter value for 'a' (must be coprime with 26): ";
@@ -121,16 +141,26 @@ void runAffineCipher() {
     argv.push_back(arg1);
     argv.push_back(arg2);
     argv.push_back(arg3);
+    
+    if (mode == "2") {
+        char arg4[] = "decrypt";
+        argv.push_back(arg4);
+    }
+    
     argv.push_back(nullptr);
     
-    affine_cipher_main(4, argv.data());
+    affine_cipher_main(argv.size() - 1, argv.data());
 }
 
 void runVigenereCipher() {
     std::cout << "=== Vigenere Cipher ===\n";
-    std::cout << "Enter text to encrypt: ";
+    std::cout << "Enter text: ";
     std::string text;
     std::getline(std::cin, text);
+    
+    std::cout << "Mode (1=encrypt, 2=decrypt): ";
+    std::string mode;
+    std::getline(std::cin, mode);
     
     std::string key;
     std::cout << "Enter encryption key: ";
@@ -143,19 +173,29 @@ void runVigenereCipher() {
     argv.push_back(arg0);
     argv.push_back(arg1);
     argv.push_back(arg2);
+    
+    if (mode == "2") {
+        char arg3[] = "decrypt";
+        argv.push_back(arg3);
+    }
+    
     argv.push_back(nullptr);
     
-    vigenere_cipher_main(3, argv.data());
+    vigenere_cipher_main(argv.size() - 1, argv.data());
 }
 
 void runRailFenceCipher() {
     std::cout << "=== Rail Fence Cipher ===\n";
-    std::cout << "Enter text to encrypt: ";
+    std::cout << "Enter text: ";
     std::string text;
     std::getline(std::cin, text);
     
+    std::cout << "Mode (1=encrypt, 2=decrypt): ";
+    std::string mode;
+    std::getline(std::cin, mode);
+    
     std::string rails_str;
-    std::cout << "Enter number of rails: ";
+    std::cout << "Enter number of rails (default=3): ";
     std::getline(std::cin, rails_str);
     
     std::vector<char*> argv;
@@ -168,7 +208,13 @@ void runRailFenceCipher() {
         char* arg2 = &rails_str[0];
         argv.push_back(arg2);
     }
+    
+    if (mode == "2") {
+        char arg3[] = "decrypt";
+        argv.push_back(arg3);
+    }
+    
     argv.push_back(nullptr);
     
-    rail_fence_cipher_main(rails_str.empty() ? 2 : 3, argv.data());
+    rail_fence_cipher_main(argv.size() - 1, argv.data());
 }
